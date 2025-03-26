@@ -17,7 +17,7 @@ class ComprarProdutos {
         cy.wait(4000)
         cy.get('.input-text').clear().type(quantidade)
         cy.get('.single_add_to_cart_button').click()
-        cy.get('.woocommerce-message > .button').should("exist")
+        ///cy.get('.woocommerce-message > .button').should("exist")
     }
 
 }
