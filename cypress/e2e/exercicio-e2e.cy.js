@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+import { faker } from '@faker-js/faker';
+import comprarProdutosPage from '../support/page_objects/comprarProdutos.page';
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   /*  Como cliente 
@@ -10,12 +12,19 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
       E validando minha compra ao final */
 
   beforeEach(() => {
-      cy.visit('/')
+      comprarProdutosPage.visitarPaginaProdutos()
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-      //TODO: Coloque todo o fluxo de teste aqui, considerando as boas práticas e otimizações
-      
+    cy.fixture("listaProduto").then((dados) =>{
+        dados.forEach((produtos) =>{
+            comprarProdutosPage.visitarProduto(produtos.nomeProduto)
+            comprarProdutosPage.addCarrinho(produtos.tamanho, produtos.cor, produtos.quantidade)
+        })
+        cy.get('.woocommerce-message > .button').click()
+    })
+
+
   });
 
 
