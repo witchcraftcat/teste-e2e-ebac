@@ -21,7 +21,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
             comprarProdutosPage.visitarProduto(produtos.nomeProduto)
             comprarProdutosPage.addCarrinho(produtos.tamanho, produtos.cor, produtos.quantidade)
         })
-        //cy.get('.woocommerce-message > .button').click()
+        cy.get('.woocommerce-message > .button').click()
     })
 
     cy.get('#cart > .dropdown-toggle').click()
